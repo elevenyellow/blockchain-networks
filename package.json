@@ -1,0 +1,23 @@
+{
+    "name": "@elevenyellow.com/blockchain-networks",
+    "version": "1.0.0",
+    "description": "Network manager for blockchains",
+    "main": "index.js",
+    "scripts": {
+        "test": "ava",
+        "testing": "npm test -- --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/elevenyellow/blockchain-networks.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/elevenyellow/blockchain-networks/issues"
+    },
+    "homepage": "https://github.com/elevenyellow/blockchain-networks#readme",
+    "devDependencies": {
+        "ava": "^0.25.0"
+    }
+}
