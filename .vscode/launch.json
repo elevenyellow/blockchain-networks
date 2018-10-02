@@ -20,7 +20,7 @@
             "name": "Win AVA",
             "program": "${workspaceRoot}/node_modules/ava/profile.js",
             "args": [
-                "/mnt/c/Users/enzo/drive/projects/switchain-wallets/${relativeFile}"
+                "/mnt/c/Users/enzo/drive/projects/blockchain-networks/${relativeFile}"
             ],
             "skipFiles": ["<node_internals>/**/*.js"]
         },

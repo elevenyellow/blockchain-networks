@@ -1,21 +1,37 @@
-const networks = []
+const NETWORKS = []
     .concat(require('./symbols/btc').networks)
     .concat(require('./symbols/eth').networks)
 
-console.log(networks)
+function getNetworks({ symbol, name } = {}) {
+    let networks = NETWORKS
+    // filtering symbol
+    if (symbol !== undefined) {
+        symbol = String(symbol).toUpperCase()
+        networks = networks.filter(network => symbol === network.symbol)
+    }
+    // filtering name
+    if (name !== undefined) {
+        name = String(name).toLowerCase()
+        networks = networks.filter(network =>
+            network.names
+                .map(namenetwork => namenetwork.toLowerCase())
+                .includes(name)
+        )
+    }
+    return networks
+}
 
-// function pickNetwork({ symbol, name }) {
-//     const coin = getCoin({ symbol })
-//     const { networks } = coin
-//     if (name === undefined) {
-//         return networks[0]
-//     }
-//     name = String(name).toLowerCase()
-//     if (networks.hasOwnProperty(name)) {
-//         return networks[name]
-//     }
-//     return networks.find(n => n.name === name)
-// }
+function getNetwork(params = {}) {
+    const networks = getNetworks(params)
+    if (
+        networks[0] === undefined ||
+        (params.symbol === undefined && params.name === undefined)
+    ) {
+        throw Error('We could not find any network')
+    } else return networks[0]
+}
+
+module.exports = { getNetworks, getNetwork }
 
 // function getDerivationPath({
 //     symbol,

@@ -20,6 +20,10 @@ const networks = [
         symbol: 'BTC',
         names: ['mainnet'],
         config: network_mainnet,
+        apiUrls: {
+            bitpay: ['https://swbtc:5kQuB8YjuWEy@btc.switchain.com/api/'],
+            blockcypher: ['https://api.blockcypher.com/v1/btc/main/']
+        },
         path: {
             false: `m/44'/0'`,
             true: `m/49'/0'` // segwit true
@@ -29,6 +33,12 @@ const networks = [
         symbol: 'BTC',
         names: ['testnet'],
         config: network_testnet,
+        apiUrls: {
+            bitpay: [
+                'https://swbtctestnet:5qc9xalwGNYjb@btc-testnet.switchain.com/api/'
+            ],
+            blockcypher: ['https://api.blockcypher.com/v1/btc/test3/']
+        },
         path: {
             false: `m/44'/1'`,
             true: `m/49'/1'` // segwit true
@@ -41,3 +51,21 @@ module.exports = {
     network_mainnet,
     network_testnet
 }
+
+// LTC: {
+//     testnet: 'https://testnet-bitcore1.trezor.io/api/',
+//     mainnet: 'https://ltc-bitcore1.trezor.io/api/'
+// },
+// GRLC: {
+//     testnet: 'https://garlicinsight.com/insight-grlc-api/',
+//     mainnet: 'https://garlicinsight.com/insight-grlc-api/'
+// }
+
+// },
+// LTC: {
+// testnet: 'https://api.blockcypher.com/v1/btc/test3/',
+// mainnet: 'https://api.blockcypher.com/v1/ltc/main/'
+// },
+// DOGE: {
+// testnet: 'https://api.blockcypher.com/v1/btc/test3/',
+// mainnet: 'https://api.blockcypher.com/v1/doge/main/'
