@@ -19,7 +19,7 @@ const networks = [
     {
         symbol: 'BTC',
         names: ['mainnet'],
-        config: network_mainnet,
+        network: network_mainnet,
         apiUrls: {
             bitpay: ['https://swbtc:5kQuB8YjuWEy@btc.switchain.com/api/'],
             blockcypher: ['https://api.blockcypher.com/v1/btc/main/']
@@ -32,7 +32,7 @@ const networks = [
     {
         symbol: 'BTC',
         names: ['testnet'],
-        config: network_testnet,
+        network: network_testnet,
         apiUrls: {
             bitpay: [
                 'https://swbtctestnet:5qc9xalwGNYjb@btc-testnet.switchain.com/api/'

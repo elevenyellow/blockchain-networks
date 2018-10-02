@@ -1,5 +1,6 @@
 const test = require('ava')
-const { getNetwork, getNetworks } = require('../')
+const Bitcoin = require('bitcoinjs-lib')
+const { getNetwork, find } = require('../')
 
 test('no object', async t => {
     try {
@@ -25,9 +26,10 @@ test('wrong symbol', async t => {
     }
 })
 
-test('wrong symbol', async t => {
-    const params = { symbol: 'btc' }
+test('all good', async t => {
+    const params = { symbol: 'btc', name: 'mainnet' }
     const network = getNetwork(params)
-    const networks = getNetworks(params)
-    t.is(network, networks[0])
+    const networks = find(params)
+    t.is(network, networks[0].network)
+    t.deepEqual(network, Bitcoin.networks.bitcoin)
 })

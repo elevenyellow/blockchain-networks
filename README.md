@@ -6,12 +6,30 @@ npm i @elevenyellow.com/blockchain-networks
 
 # API
 
-### getCoin({ symbol }) : object
+<!--
 
-### getNetwork({ symbol, [name=mainnet] }) : network
+### find({ symbol, name }) : array
 
 ```js
-import { getNetwork } from '@elevenyellow.com/blockchain-networks'
-const mainnet = getNetwork({symbol:'BTC'}) // Bitcoin.networks.bitcoin
-const testnet =  = getNetwork({symbol:'BTC', name:'testnet'}) // Bitcoin.networks.testnet
+import { find } from '@elevenyellow.com/blockchain-networks'
+const network = find({ symbol: 'BTC', name: 'testnet' })
 ```
+
+Output
+
+```json
+{
+    "symbol": "BTC",
+    "names": ["testnet"],
+    "config": [Object], // equivalent to: require('bitcoinjs-lib').networks.testnet
+    "apiUrls": {
+        "bitpay": [Array],
+        "blockcypher": [Array]
+    },
+    "path": {
+        "false": "m/44'/1'",
+        "true": "m/49'/1'" // segwit
+    }
+}
+```
+-->

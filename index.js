@@ -2,7 +2,7 @@ const NETWORKS = []
     .concat(require('./symbols/btc').networks)
     .concat(require('./symbols/eth').networks)
 
-function getNetworks({ symbol, name } = {}) {
+function find({ symbol, name } = {}) {
     let networks = NETWORKS
     // filtering symbol
     if (symbol !== undefined) {
@@ -22,16 +22,16 @@ function getNetworks({ symbol, name } = {}) {
 }
 
 function getNetwork(params = {}) {
-    const networks = getNetworks(params)
+    const networks = find(params)
     if (
         networks[0] === undefined ||
         (params.symbol === undefined && params.name === undefined)
     ) {
         throw Error('We could not find any network')
-    } else return networks[0]
+    } else return networks[0].network
 }
 
-module.exports = { getNetworks, getNetwork }
+module.exports = { find, getNetwork }
 
 // function getDerivationPath({
 //     symbol,
