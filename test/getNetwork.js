@@ -26,10 +26,16 @@ test('wrong symbol', async t => {
     }
 })
 
+test('without name', async t => {
+    const network = getNetwork({ symbol: 'btc' })
+    const network2 = getNetwork({ symbol: 'btc', name: 'mainnet' })
+    t.is(network, network2)
+})
+
 test('all good', async t => {
-    const params = { symbol: 'btc', name: 'mainnet' }
+    const params = { symbol: 'btc', name: 'testnet' }
     const network = getNetwork(params)
     const networks = find(params)
     t.is(network, networks[0].network)
-    t.deepEqual(network, Bitcoin.networks.bitcoin)
+    t.deepEqual(network, Bitcoin.networks.testnet)
 })

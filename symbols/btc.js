@@ -24,9 +24,9 @@ const networks = [
             bitpay: ['https://swbtc:5kQuB8YjuWEy@btc.switchain.com/api/'],
             blockcypher: ['https://api.blockcypher.com/v1/btc/main/']
         },
-        path: {
-            false: `m/44'/0'`,
-            true: `m/49'/0'` // segwit true
+        paths: {
+            false: { purpose: 44, coin: 0 }, // `m/44'/0'`
+            true: { purpose: 49, coin: 0 } // segwit true
         }
     },
     {
@@ -39,9 +39,9 @@ const networks = [
             ],
             blockcypher: ['https://api.blockcypher.com/v1/btc/test3/']
         },
-        path: {
-            false: `m/44'/1'`,
-            true: `m/49'/1'` // segwit true
+        paths: {
+            false: { purpose: 44, coin: 1 },
+            true: { purpose: 49, coin: 1 } // segwit true
         }
     }
 ]

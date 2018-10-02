@@ -21,39 +21,46 @@ function find({ symbol, name } = {}) {
     return networks
 }
 
-function getNetwork(params = {}) {
-    const networks = find(params)
+function getObject(params) {
+    const object = find(params)
     if (
-        networks[0] === undefined ||
+        object[0] === undefined ||
         (params.symbol === undefined && params.name === undefined)
     ) {
         throw Error('We could not find any network')
-    } else return networks[0].network
+    } else return object[0]
 }
 
-module.exports = { find, getNetwork }
+function getNetwork({ symbol, name }) {
+    return getObject({ symbol, name }).network
+}
 
-// function getDerivationPath({
-//     symbol,
-//     name,
-//     segwit = true,
-//     account,
-//     external,
-//     index
-// }) {
-//     const network = pickNetwork({ symbol, name })
-//     const path = network.path[segwit] || network.path.true || network.path.false
-//     return makePath({ path, account, external, index })
-// }
+function getDerivationPath({
+    symbol,
+    name,
+    segwit = true,
+    account,
+    external,
+    index
+} = {}) {
+    const paths = getObject({ symbol, name }).paths
+    const path = paths[segwit] || paths.true || paths.false
+    const { purpose, coin } = path
+    return generatePath({ path, purpose, coin, account, external, index })
+}
 
-// function makePath({ path, account, external, index }) {
-//     const toadd = []
-//     if (account !== undefined) toadd[0] = account
-//     if (external !== undefined) toadd[1] = external
-//     if (index !== undefined) toadd[2] = index
-//     for (let i = 0; i < toadd.length; i++) {
-//         path += `/${toadd[i] || 0}`
-//         if (i === 0) path += `'`
-//     }
-//     return path
-// }
+function generatePath({ purpose, coin, account, external, index }) {
+    let path = `m/${purpose}'`
+    const toadd = []
+    if (coin !== undefined) toadd[0] = coin
+    if (account !== undefined) toadd[1] = account
+    if (external !== undefined) toadd[2] = external
+    if (index !== undefined) toadd[3] = index
+    for (let i = 0; i < toadd.length; i++) {
+        path += `/${toadd[i] || 0}`
+        if (i < 2) path += `'`
+    }
+    return path
+}
+
+module.exports = { find, getNetwork, getDerivationPath }
