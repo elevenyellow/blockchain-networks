@@ -83,18 +83,35 @@ Output
 ```js
 [
     {
-        "symbol": "BTC",
-        "names": ["testnet"],
-        "network": [Object], // equivalent to: getNetwork({symbol:'btc', name:'testnet'})
-        "apiUrls": {
-            "bitpay": [Array],
-            "blockcypher": [Array]
-        },
-        "paths": {
-            "false": "m/44'/1'",
-            "true": "m/49'/1'" // segwit
+        symbol: 'BTC',
+        names: ['testnet'],
+        network: [Object], // equivalent to: getNetwork({symbol:'btc', name:'testnet'}),
+        apiUrls: { bitpay: [Array], blockcypher: [Array] },
+        paths: {
+            false: { purpose: 44, coin: 1 },
+            true: { purpose: 49, coin: 1 } // segwit true
         }
     },
+    {
+        symbol: 'ETH',
+        names: ['ropsten', 'testnet', 'testnet1'],
+        network: [Object],
+        apiUrls: { etherscan: [Array] },
+        paths: {
+            false: { purpose: 44, coin: 60 },
+            true: { purpose: 44, coin: 60 }
+        }
+    },
+    {
+        symbol: 'ETH',
+        names: ['kovan', 'testnet', 'testnet2'],
+        network: [Object],
+        apiUrls: { etherscan: [Array] },
+        paths: {
+            false: { purpose: 44, coin: 60 },
+            true: { purpose: 44, coin: 60 }
+        }
+    }
     ...
 ]
 ```
