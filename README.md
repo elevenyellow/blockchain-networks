@@ -71,7 +71,7 @@ const url = getApiUrl({
 
 ### find({ symbol, name }) : array
 
-Returns all the info of each network that is used internally
+Returns all the info of each network that is used internally. Is used internally by all the functions that have the arguments `name` and `symbol`.
 
 ```js
 import { find } from '@elevenyellow.com/blockchain-networks'
