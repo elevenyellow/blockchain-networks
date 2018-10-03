@@ -15,6 +15,24 @@ const network = getNetwork({ symbol: 'BTC', name: 'testnet' })
 const network_testnet = require('bitcoinjs-lib').networks.testnet
 ```
 
+```js
+const network1 = getNetwork({ symbol: 'ETH', name: 'testnet' })
+const network2 = getNetwork({ symbol: 'ETH', name: 'ropsten' })
+network1 === network2 // true
+```
+
+```js
+const network1 = getNetwork({ symbol: 'ETH', name: 'testnet1' })
+const network2 = getNetwork({ symbol: 'ETH', name: 'ropsten' })
+network1 === network2 // true
+```
+
+```js
+const network1 = getNetwork({ symbol: 'ETH', name: 'testnet2' })
+const network2 = getNetwork({ symbol: 'ETH', name: 'kovan' })
+network1 === network2 // true
+```
+
 ### getDerivationPath({ symbol, name, [account=0], [external=0], [index=0] }) : string
 
 ```js
@@ -32,6 +50,23 @@ getDerivationPath({
 }) // "m/49'/1'/3'/2/1"
 ```
 
+### getApiUrl({ symbol, name, type, [index=0], [user], [password] }) : string
+
+```js
+import { getApiUrl } from '@elevenyellow.com/blockchain-networks'
+const symbol = 'BTC'
+const name = 'mainnet'
+const url = getApiUrl({ symbol, name, type: 'blockcypher' }) // 'https://api.blockcypher.com/v1/btc/main/'
+const url = getApiUrl({ symbol, name, type: 'bitpay' }) // 'https://btc.switchain.com/api/'
+const url = getApiUrl({
+    symbol,
+    name,
+    type: 'bitpay',
+    user: 'me',
+    password: 's3cr3t'
+}) // 'https://me:s3cr3t@btc.switchain.com/api/'
+```
+
 ### generatePath({ purpose, [coin=0], [account=0], [external=0], [index=0] }) : string
 
 ### find({ symbol, name }) : array
@@ -45,7 +80,7 @@ const network = find({ name: 'testnet' })
 
 Output
 
-```json
+```js
 [
     {
         "symbol": "BTC",

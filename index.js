@@ -63,4 +63,25 @@ function generatePath({ purpose, coin, account, external, index }) {
     return path
 }
 
-module.exports = { find, getNetwork, getDerivationPath }
+function getApiUrl({ symbol, name, type, index = 0, user, password }) {
+    const types = getObject({ symbol, name }).apiUrls
+    const urls = types[type]
+    if (urls === undefined || urls[index] === undefined)
+        throw Error('We could not find any url')
+
+    let url = urls[index]
+    return typeof user == 'string' &&
+        typeof password == 'string' &&
+        user.length > 0 &&
+        password.length > 0
+        ? url.replace('//', `//${user}:${password}@`)
+        : url
+}
+
+module.exports = {
+    getNetwork,
+    getDerivationPath,
+    getApiUrl,
+    generatePath,
+    find
+}

@@ -21,7 +21,7 @@ const networks = [
         names: ['mainnet'],
         network: network_mainnet,
         apiUrls: {
-            bitpay: ['https://swbtc:5kQuB8YjuWEy@btc.switchain.com/api/'],
+            bitpay: ['https://btc.switchain.com/api/'],
             blockcypher: ['https://api.blockcypher.com/v1/btc/main/']
         },
         paths: {
@@ -34,9 +34,7 @@ const networks = [
         names: ['testnet'],
         network: network_testnet,
         apiUrls: {
-            bitpay: [
-                'https://swbtctestnet:5qc9xalwGNYjb@btc-testnet.switchain.com/api/'
-            ],
+            bitpay: ['https://btc-testnet.switchain.com/api/'],
             blockcypher: ['https://api.blockcypher.com/v1/btc/test3/']
         },
         paths: {
