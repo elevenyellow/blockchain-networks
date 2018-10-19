@@ -1,0 +1,10 @@
+{
+    "BTC_NODE": "btc_node",
+    "INSIGHT": "insight",
+    "ETH_NODE": "eth_node",
+    "ERC20_NODE": "erc20_node",
+    "ETHERSCAN": "etherscan",
+    "ETHERSCAN_ERC20": "etherscan_erc20",
+    "BLOCKCYPHER": "blockcypher",
+    "INFURA": "infura"
+}
