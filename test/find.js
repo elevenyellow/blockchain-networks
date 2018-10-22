@@ -51,6 +51,6 @@ test('checking object', async t => {
     t.is(network.hasOwnProperty('symbol'), true)
     t.is(network.hasOwnProperty('names'), true)
     t.is(network.hasOwnProperty('network'), true)
-    t.is(network.hasOwnProperty('apiUrls'), true)
+    t.is(network.hasOwnProperty('providers'), true)
     t.is(network.hasOwnProperty('paths'), true)
 })

@@ -6,12 +6,16 @@ function find({ symbol, name } = {}) {
     let networks = NETWORKS
     // filtering symbol
     if (symbol !== undefined) {
-        symbol = String(symbol).toUpperCase()
+        symbol = String(symbol)
+            .trim()
+            .toUpperCase()
         networks = networks.filter(network => symbol === network.symbol)
     }
     // filtering name
     if (name !== undefined) {
-        name = String(name).toLowerCase()
+        name = String(name)
+            .trim()
+            .toLowerCase()
         networks = networks.filter(network =>
             network.names
                 .map(namenetwork => namenetwork.toLowerCase())
@@ -63,24 +67,33 @@ function generatePath({ purpose, coin, account, external, index }) {
     return path
 }
 
-// function getApiUrl({ symbol, name, type, index = 0, user, password }) {
-//     const types = getObject({ symbol, name }).apiUrls
-//     const urls = types[type]
-//     if (urls === undefined || urls[index] === undefined)
-//         throw Error('We could not find any url')
+function getProviders({ symbol, name, provider } = {}) {
+    let networks = find({ symbol, name })
+    let providers = []
 
-//     let url = urls[index]
-//     return typeof user == 'string' &&
-//         typeof password == 'string' &&
-//         user.length > 0 &&
-//         password.length > 0
-//         ? url.replace('//', `//${user}:${password}@`)
-//         : url
-// }
+    networks.forEach(n => {
+        const items = n.providers.map(p => {
+            const item = Object.assign({}, p)
+            item.symbol = n.symbol
+            item.networks = n.names
+            return item
+        })
+        providers = providers.concat(items)
+    })
+
+    if (typeof provider == 'string') {
+        providers = providers.filter(
+            p => p.provider.toUpperCase() === provider.trim().toUpperCase()
+        )
+    }
+
+    return providers
+}
 
 module.exports = {
+    find,
     getNetwork,
     getDerivationPath,
     generatePath,
-    find
+    getProviders
 }
