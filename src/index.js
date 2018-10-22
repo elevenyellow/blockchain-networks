@@ -75,7 +75,7 @@ function getProviders({ symbol, name, provider } = {}) {
         const items = n.providers.map(p => {
             const item = Object.assign({}, p)
             item.symbol = n.symbol
-            item.networks = n.names
+            item.networks = n.names.slice(0)
             return item
         })
         providers = providers.concat(items)
@@ -90,10 +90,19 @@ function getProviders({ symbol, name, provider } = {}) {
     return providers
 }
 
+function addProvider({ symbol, name, ...args }) {
+    const networks = find({ symbol, name })
+    networks.forEach(n => {
+        n.providers.push(args)
+    })
+    return networks.length
+}
+
 module.exports = {
     find,
     getNetwork,
     getDerivationPath,
     generatePath,
-    getProviders
+    getProviders,
+    addProvider
 }
