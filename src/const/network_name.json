@@ -1,0 +1,8 @@
+{
+    "MAINNET": "MAINNET",
+    "TESTNET": "TESTNET",
+    "TESTNET1": "TESTNET1",
+    "TESTNET2": "TESTNET2",
+    "ROPSTEN": "ROPSTEN",
+    "KOVAN": "KOVAN"
+}

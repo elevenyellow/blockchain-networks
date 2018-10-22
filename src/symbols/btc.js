@@ -1,3 +1,7 @@
+const { BTC } = require('../const/symbol')
+const { INSIGHT, BLOCKCYPHER } = require('../const/provider')
+const { MAINNET, TESTNET, TESTNET1 } = require('../const/network_name')
+
 const network_mainnet = {
     messagePrefix: '\u0018Bitcoin Signed Message:\n',
     bech32: 'bc',
@@ -15,28 +19,40 @@ const network_testnet = {
     wif: 239
 }
 
+const providers_mainnet = [
+    {
+        provider: BLOCKCYPHER,
+        url: 'https://api.blockcypher.com/v1/btc/main/'
+    }
+]
+
+const providers_testnet = [
+    {
+        provider: INSIGHT,
+        url: 'https://test-insight.bitpay.com/api/'
+    },
+    {
+        provider: BLOCKCYPHER,
+        url: 'https://api.blockcypher.com/v1/btc/test3/'
+    }
+]
+
 const networks = [
     {
-        symbol: 'BTC',
-        names: ['mainnet'],
+        symbol: BTC,
+        names: [MAINNET],
         network: network_mainnet,
-        apiUrls: {
-            bitpay: ['https://btc.switchain.com/api/'],
-            blockcypher: ['https://api.blockcypher.com/v1/btc/main/']
-        },
+        providers: providers_mainnet,
         paths: {
             false: { purpose: 44, coin: 0 }, // `m/44'/0'`
             true: { purpose: 49, coin: 0 } // segwit true
         }
     },
     {
-        symbol: 'BTC',
-        names: ['testnet'],
+        symbol: BTC,
+        names: [TESTNET, TESTNET1],
         network: network_testnet,
-        apiUrls: {
-            bitpay: ['https://btc-testnet.switchain.com/api/'],
-            blockcypher: ['https://api.blockcypher.com/v1/btc/test3/']
-        },
+        providers: providers_testnet,
         paths: {
             false: { purpose: 44, coin: 1 },
             true: { purpose: 49, coin: 1 } // segwit true
