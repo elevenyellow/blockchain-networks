@@ -1,6 +1,6 @@
 const { BTC } = require('../const/symbol')
 const { INSIGHT, BLOCKCYPHER } = require('../const/provider')
-const { MAINNET, TESTNET, TESTNET1 } = require('../const/network_name')
+const { MAINNET, TESTNET, TESTNET1 } = require('../const/network')
 
 const network_mainnet = {
     messagePrefix: '\u0018Bitcoin Signed Message:\n',

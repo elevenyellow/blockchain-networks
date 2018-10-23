@@ -7,7 +7,7 @@ const {
     TESTNET2,
     ROPSTEN,
     KOVAN
-} = require('../const/network_name')
+} = require('../const/network')
 const { network_mainnet } = require('./btc')
 
 const providers_mainnet = [

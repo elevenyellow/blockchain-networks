@@ -1,6 +1,6 @@
 {
     "name": "@elevenyellow.com/blockchain-networks",
-    "version": "1.0.0",
+    "version": "1.1.1",
     "description": "Network manager for blockchains",
     "main": "src/index.js",
     "scripts": {

@@ -1,7 +1,7 @@
 const test = require('ava')
 const { getProviders, addProvider, find } = require('../')
 const { BTC } = require('../src/const/symbol')
-const { MAINNET } = require('../src/const/network_name')
+const { MAINNET } = require('../src/const/network')
 
 test('all networks', async t => {
     const networks = find()
