@@ -9,63 +9,60 @@ npm i @elevenyellow.com/blockchain-networks
 ### getNetwork({ symbol, name }) : object
 
 ```js
-import { getNetwork } from '@elevenyellow.com/blockchain-networks'
-const network = getNetwork({ symbol: 'BTC', name: 'testnet' })
+import {
+    getNetwork,
+    network,
+    symbol,
+    provider
+} from '@elevenyellow.com/blockchain-networks'
+const networkfound = getNetwork({ symbol: symbol.BTC, name: network.TESTNET })
 // equivalent to
-const network_testnet = require('bitcoinjs-lib').networks.testnet
+const networkfound_testnet = require('bitcoinjs-lib').networks.testnet
 ```
 
 ```js
-const network1 = getNetwork({ symbol: 'ETH', name: 'testnet' })
-const network2 = getNetwork({ symbol: 'ETH', name: 'ropsten' })
+const networkfound1 = getNetwork({ symbol: symbol.ETH, name: network.TESTNET })
+const networkfound2 = getNetwork({ symbol: symbol.ETH, name: networl.ROPSTEN })
 network1 === network2 // true
 ```
 
 ```js
-const network1 = getNetwork({ symbol: 'ETH', name: 'testnet1' })
-const network2 = getNetwork({ symbol: 'ETH', name: 'ropsten' })
+const networkfound1 = getNetwork({ symbol: symbol.ETH, name: network.TESTNET1 })
+const networkfound2 = getNetwork({ symbol: symbol.ETH, name: networl.ROPSTEN })
 network1 === network2 // true
 ```
 
 ```js
-const network1 = getNetwork({ symbol: 'ETH', name: 'testnet2' })
-const network2 = getNetwork({ symbol: 'ETH', name: 'kovan' })
+const networkfound1 = getNetwork({ symbol: symbol.ETH, name: network.TESTNET2 })
+const networkfound2 = getNetwork({ symbol: symbol.ETH, name: network.KOVAN })
 network1 === network2 // true
 ```
 
 ### getDerivationPath({ symbol, name, [account=0], [external=0], [index=0] }) : string
 
 ```js
-import { getDerivationPath } from '@elevenyellow.com/blockchain-networks'
-getDerivationPath({ symbol: 'btc', name: 'testnet' }) // "m/49'/1'"
-getDerivationPath({ symbol: 'btc', name: 'testnet', account: 5 }) // "m/49'/1'/5'"
-getDerivationPath({ symbol: 'btc', name: 'testnet', external: 4 }) // "m/49'/1'/0'/4"
-getDerivationPath({ symbol: 'btc', name: 'testnet', index: 3 }) // "m/49'/1'/0'/0/3"
+import {
+    getDerivationPath,
+    network,
+    symbol,
+    provider
+} from '@elevenyellow.com/blockchain-networks'
+getDerivationPath({ symbol: symbol.BTC, name: network.TESTNET }) // "m/49'/1'"
+getDerivationPath({ symbol: symbol.BTC, name: network.TESTNET, account: 5 }) // "m/49'/1'/5'"
+getDerivationPath({ symbol: symbol.BTC, name: network.TESTNET, external: 4 }) // "m/49'/1'/0'/4"
+getDerivationPath({ symbol: symbol.BTC, name: network.TESTNET, index: 3 }) // "m/49'/1'/0'/0/3"
 getDerivationPath({
-    symbol: 'btc',
-    name: 'testnet',
+    symbol: symbol.BTC,
+    name: network.TESTNET,
     account: 3,
     external: 2,
     index: 1
 }) // "m/49'/1'/3'/2/1"
 ```
 
-### getApiUrl({ symbol, name, type, [index=0], [user], [password] }) : string
+### getProviders({ [symbol], [name], [provider] }) : array
 
-```js
-import { getApiUrl } from '@elevenyellow.com/blockchain-networks'
-const symbol = 'BTC'
-const name = 'mainnet'
-const url = getApiUrl({ symbol, name, type: 'blockcypher' }) // 'https://api.blockcypher.com/v1/btc/main/'
-const url = getApiUrl({ symbol, name, type: 'bitpay' }) // 'https://btc.switchain.com/api/'
-const url = getApiUrl({
-    symbol,
-    name,
-    type: 'bitpay',
-    user: 'me',
-    password: 's3cr3t'
-}) // 'https://me:s3cr3t@btc.switchain.com/api/'
-```
+### addProviders({ [symbol], [name] }) : string
 
 ### generatePath({ purpose, [coin=0], [account=0], [external=0], [index=0] }) : string
 
@@ -74,8 +71,8 @@ const url = getApiUrl({
 Returns all the info of each network that is used internally. Is used internally by all the functions that have the arguments `name` and `symbol`.
 
 ```js
-import { find } from '@elevenyellow.com/blockchain-networks'
-const network = find({ name: 'testnet' })
+import { find, network } from '@elevenyellow.com/blockchain-networks'
+const networkfound = find({ name: network.TESTNET })
 ```
 
 Output
@@ -83,9 +80,9 @@ Output
 ```js
 [
     {
-        symbol: 'BTC',
-        names: ['testnet'],
-        network: [Object], // equivalent to: getNetwork({symbol:'btc', name:'testnet'}),
+        symbol: symbol.BTC,
+        names: [network.TESTNET],
+        network: [Object], // equivalent to: getNetwork({symbol:symbol.BTC, name:network.TESTNET}),
         apiUrls: { bitpay: [Array], blockcypher: [Array] },
         paths: {
             false: { purpose: 44, coin: 1 },
@@ -93,8 +90,8 @@ Output
         }
     },
     {
-        symbol: 'ETH',
-        names: ['ropsten', 'testnet', 'testnet1'],
+        symbol: symbol.ETH,
+        names: [networl.ROPSTEN, network.TESTNET, network.TESTNET1],
         network: [Object],
         apiUrls: { etherscan: [Array] },
         paths: {
@@ -103,8 +100,8 @@ Output
         }
     },
     {
-        symbol: 'ETH',
-        names: ['kovan', 'testnet', 'testnet2'],
+        symbol: symbol.ETH,
+        names: [network.KOVAN, network.TESTNET, network.TESTNET2],
         network: [Object],
         apiUrls: { etherscan: [Array] },
         paths: {

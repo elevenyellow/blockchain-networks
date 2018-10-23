@@ -26,5 +26,5 @@ test('checking object', async t => {
     t.is(typeof provider, 'object')
     t.is(provider.hasOwnProperty('symbol'), true)
     t.is(provider.hasOwnProperty('networks'), true)
-    t.is(provider.hasOwnProperty('name'), true)
+    t.is(provider.hasOwnProperty('provider'), true)
 })

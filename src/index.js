@@ -1,3 +1,6 @@
+const symbol = require('./const/symbol')
+const provider = require('./const/provider')
+const network = require('./const/network_name')
 const NETWORKS = []
     .concat(require('./symbols/btc').networks)
     .concat(require('./symbols/eth').networks)
@@ -100,6 +103,9 @@ function addProvider({ symbol, name, ...args }) {
 
 module.exports = {
     find,
+    symbol,
+    provider,
+    network,
     getNetwork,
     getDerivationPath,
     generatePath,
